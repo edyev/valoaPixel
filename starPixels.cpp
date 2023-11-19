@@ -30,15 +30,15 @@ int starPixels::compute(
     int direction;
 
     if ( 0 == x % 60 && 0 == pixel_n ){
-        direction = random(0, 2) ? -1 : 1;
-        Serial.println(x * direction);
         it = ( it+1 ) % 4;
     }
 
-    if ( ( pixel_n + (int)x * direction) % 60  < 10 ){
-        pixel->xp_rled = colours[it].xp_rled * fadeseq[( pixel_n + x * (int)direction)%60]; // colours[it].xp_rled / 5 * (pixel_n) ;
-        pixel->xp_gled = colours[it].xp_gled * fadeseq[( pixel_n + x * (int)direction)%60]; //colours[it].xp_gled / 5 * (pixel_n);
-        pixel->xp_bled = colours[it].xp_bled * fadeseq[( pixel_n + x * (int)direction)%60];
+    pixel_n = pixel_n - x;
+    
+    if ( pixel_n % 60  < 10 ){
+        pixel->xp_rled = colours[it].xp_rled * fadeseq[( pixel_n)%60]; // colours[it].xp_rled / 5 * (pixel_n) ;
+        pixel->xp_gled = colours[it].xp_gled * fadeseq[( pixel_n)%60]; //colours[it].xp_gled / 5 * (pixel_n);
+        pixel->xp_bled = colours[it].xp_bled * fadeseq[( pixel_n)%60];
     }
     else{
         *pixel = {0};
