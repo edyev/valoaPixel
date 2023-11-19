@@ -19,6 +19,7 @@ public:
     virtual int compute(struct xPixel* pixel, unsigned int pixel_n, unsigned int x) = 0;
     virtual void hardware_set(unsigned int n, const struct xPixel* pixel) = 0;
     virtual void render() = 0;
+    virtual void pre_sweep() = 0;
     void run();
     void step();
     unsigned int get_total_pixels() const;

@@ -12,6 +12,8 @@ void xPixels::setPixelsLength(unsigned int n){
 void xPixels::run(){
     struct xPixel pixel;
 
+    this->pre_sweep();
+
     for (unsigned int n = 0; n < xp_total_pixels; ++n){
         //Serial.print(n);Serial.print(" , "); Serial.print( xp_x);
         this->compute(&pixel, n, xp_x ); 
