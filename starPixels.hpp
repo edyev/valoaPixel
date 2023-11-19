@@ -9,7 +9,8 @@ private:
     struct xPixel colours[4];
     uint8_t fadeseq[10];
     unsigned int it;
-    
+    int direction;
+
 
 public:
     starPixels();

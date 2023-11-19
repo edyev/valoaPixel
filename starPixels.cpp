@@ -22,23 +22,33 @@ starPixels::starPixels(){
 
 }
 int starPixels::init(){return 0;}
-
 int starPixels::compute(
     struct xPixel* pixel, unsigned int pixel_n, unsigned int x)
 {
     unsigned int hue;
-    int direction;
 
-    if ( 0 == x % 60 && 0 == pixel_n ){
+    if ( 0 == ( x % 70 ) && 0 == pixel_n ){
+        direction = random(0, 2) ? -1 : 1;
         it = ( it+1 ) % 4;
     }
+    if ( (pixel_n + x * direction) % 70  < 10 ){
+#ifdef TROUBLESHOOT_LOGS
+        Serial.print("x = ");
+        Serial.print(x);
 
-    pixel_n = pixel_n - x;
-    
-    if ( pixel_n % 60  < 10 ){
-        pixel->xp_rled = colours[it].xp_rled * fadeseq[( pixel_n)%60]; // colours[it].xp_rled / 5 * (pixel_n) ;
-        pixel->xp_gled = colours[it].xp_gled * fadeseq[( pixel_n)%60]; //colours[it].xp_gled / 5 * (pixel_n);
-        pixel->xp_bled = colours[it].xp_bled * fadeseq[( pixel_n)%60];
+        Serial.print(";");
+
+        Serial.print((pixel_n - x) % 60);
+        Serial.print("->");
+        Serial.print(pixel_n - x);
+        Serial.print("\t|\t");
+        Serial.print(direction * (int) x);
+        Serial.print("\n");
+#endif // TROUBLESHOOT_LOGS
+
+        pixel->xp_rled = colours[it].xp_rled * fadeseq[(pixel_n + x * direction)%70]; // colours[it].xp_rled / 5 * (pixel_n) ;
+        pixel->xp_gled = colours[it].xp_gled * fadeseq[(pixel_n + x * direction)%70]; //colours[it].xp_gled / 5 * (pixel_n);
+        pixel->xp_bled = colours[it].xp_bled * fadeseq[(pixel_n + x * direction)%70];
     }
     else{
         *pixel = {0};
@@ -49,5 +59,4 @@ int starPixels::compute(
 
 void starPixels::pre_sweep(){
     //it = ( it+1 ) % 4;
-
 }
