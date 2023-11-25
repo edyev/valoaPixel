@@ -6,7 +6,7 @@
 
 class starPixels: public wsPixels{
 private:
-    struct xPixel colours[4];
+    struct xPixel colours[6];
     uint8_t fadeseq[10];
     unsigned int it;
     int direction;

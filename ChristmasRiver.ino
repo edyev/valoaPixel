@@ -11,6 +11,9 @@
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
 
+const int potPin = A0;
+unsigned int potVal = 0;
+
 xPixels* pixels;
 
 void setup() {
@@ -22,5 +25,7 @@ void setup() {
 
 void loop() {
   pixels->run();
-  delay(10);
+  potVal = analogRead(potPin);
+  potVal = map(potVal, 0, 1023, 10, 100);
+  delay(potVal);
 }
