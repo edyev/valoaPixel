@@ -22,5 +22,5 @@ void setup() {
 
 void loop() {
   pixels->run();
-  delay(10);
+  delay(50);
 }

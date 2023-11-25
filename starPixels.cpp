@@ -7,6 +7,8 @@ starPixels::starPixels(){
     colours[1] = {0, 1, 0};
     colours[2] = {0, 0, 1};
     colours[3] = {1, 1, 0};
+    colours[4] = {0, 1, 1};
+    colours[5] = {1, 0, 1};
 
     fadeseq[0] = 0x5;
     fadeseq[1] = 0x25;
@@ -29,7 +31,7 @@ int starPixels::compute(
 
     if ( 0 == ( x % 70 ) && 0 == pixel_n ){
         direction = random(0, 2) ? -1 : 1;
-        it = ( it+1 ) % 4;
+        it = ( it+1 ) % 6;
     }
     if ( (pixel_n + x * direction) % 70  < 10 ){
 #ifdef TROUBLESHOOT_LOGS
