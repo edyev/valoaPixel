@@ -66,7 +66,7 @@ int riverPixels::compute(struct xPixel* pixel, unsigned int pixel_n, unsigned in
     // Serial.println(sel);
 
     if ( 0 == (x % rp_period_counts )  && x > 0 && pixel_n == 0){
-        rp_current_colour = rp_colours[rp_offset];
+        rp_current_colour = rp_colours[random(0, 9)];
         rp_transition = 1;
         transition_delta = 0;
         rp_offset++;
